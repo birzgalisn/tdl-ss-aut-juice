@@ -30,5 +30,16 @@
       "description": "Made from blended Raspberry Pi, water and sugar."
     },
     "review": "Tastes like metal"
+  },
+  "girlie": {
+    "query": "Girlie",
+    "result": {
+      "title": "OWASP Juice Shop CTF Girlie-Shirt",
+      "description": "For serious Capture-the-Flag heroines only!"
+    },
+    "address": "United Fakedom",
+    "delivery": "Standard",
+    "card": "5678",
+    "message": "Thank you for your purchase!"
   }
 }

@@ -56,6 +56,10 @@ class HomePage extends BasePage {
   static get itemsPerPageOptions() {
     return cy.get("[id^='mat-option-']");
   }
+
+  static get basketButton() {
+    return cy.get("button[aria-label='Show the shopping cart']");
+  }
 }
 
 export default HomePage;

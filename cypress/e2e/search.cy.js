@@ -1,7 +1,13 @@
 import * as loginFixture from "../fixtures/login.json";
 import * as searchFixture from "../fixtures/search.json";
+import BasketPage from "../pageObjects/basketPage";
+import DeliveryMethodPage from "../pageObjects/deliveryMethodPage";
 import HomePage from "../pageObjects/homePage";
 import LoginPage from "../pageObjects/loginPage";
+import OrderCompletionPage from "../pageObjects/orderCompletionPage";
+import OrderSummaryPage from "../pageObjects/orderSummaryPage";
+import PaymentOptionsPage from "../pageObjects/paymentOptionsPage";
+import SelectAddressPage from "../pageObjects/selectAddressPage";
 
 context("Search", () => {
   beforeEach(() => {
@@ -104,7 +110,7 @@ context("Search", () => {
   // Validate that the amount of cards is 24
   // Change items per page (at the bottom of page) to 36
   // Validate that the amount of cards is 35
-  it.only("Default amount of products", () => {
+  it("Default amount of products", () => {
     [12, 24, 36].forEach((el, idx, arr) => {
       HomePage.products.should("have.length.at.most", el);
       HomePage.itemsPerPage.should("contain", el).click();
@@ -113,5 +119,64 @@ context("Search", () => {
         .contains(arr[idx + 1] ?? el)
         .click();
     });
+  });
+
+  // Click on search icon
+  // Search for Girlie
+  // Add to basket "Girlie"
+  // Click on "Your Basket" button
+  // Create page object - BasketPage
+  // Click on "Checkout" button
+  // Create page object - SelectAddressPage
+  // Select address containing "United Fakedom"
+  // Click Continue button
+  // Create page object - DeliveryMethodPage
+  // Select delivery speed Standard Delivery
+  // Click Continue button
+  // Create page object - PaymentOptionsPage
+  // Select card that ends with "5678"
+  // Click Continue button
+  // Create page object - OrderSummaryPage
+  // Click on "Place your order and pay"
+  // Create page object - OrderCompletionPage
+  // Validate confirmation - "Thank you for your purchase!"
+  it("Girlie", () => {
+    HomePage.searchButton.click();
+    HomePage.searchField
+      .should("be.visible")
+      .type(searchFixture["girlie"].query + "{enter}");
+    HomePage.products
+      .contains(searchFixture["girlie"].result.title)
+      .get("[aria-label='Add to Basket']")
+      .click();
+    HomePage.basketButton.click();
+
+    BasketPage.continueButton.click();
+
+    SelectAddressPage.continueButton.should("be.disabled");
+    SelectAddressPage.addresses
+      .contains(searchFixture["girlie"].address)
+      .click();
+    SelectAddressPage.continueButton.should("be.enabled").click();
+
+    DeliveryMethodPage.continueButton.should("be.disabled");
+    DeliveryMethodPage.deliveryMethods
+      .contains(searchFixture["girlie"].delivery)
+      .click();
+    DeliveryMethodPage.continueButton.should("be.enabled").click();
+
+    PaymentOptionsPage.continueButton.should("be.disabled");
+    PaymentOptionsPage.cards
+      .contains(searchFixture["girlie"].card)
+      .get("mat-radio-button")
+      .click();
+    PaymentOptionsPage.continueButton.should("be.enabled").click();
+
+    OrderSummaryPage.placeOrderButton.should("be.enabled").click();
+
+    OrderCompletionPage.message.should(
+      "contain",
+      searchFixture["girlie"].message
+    );
   });
 });
