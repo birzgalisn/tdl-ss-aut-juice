@@ -140,7 +140,7 @@ context("Search", () => {
   // Click on "Place your order and pay"
   // Create page object - OrderCompletionPage
   // Validate confirmation - "Thank you for your purchase!"
-  it("Girlie", () => {
+  it("User can purchase the goods", () => {
     HomePage.searchButton.click();
     HomePage.searchField
       .should("be.visible")
