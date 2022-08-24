@@ -1,7 +1,16 @@
 {
-  "query": "Lemon",
-  "result": {
-    "title": "Lemon Juice (500ml)",
-    "description": "Sour but full of vitamins."
+  "lemon": {
+    "query": "Lemon",
+    "result": {
+      "title": "Lemon Juice (500ml)",
+      "description": "Sour but full of vitamins."
+    }
+  },
+  "500ml": {
+    "query": "500ml",
+    "result": {
+      "title": "Lemon Juice (500ml)",
+      "description": "Sour but full of vitamins."
+    }
   }
 }
