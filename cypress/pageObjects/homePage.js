@@ -48,6 +48,14 @@ class HomePage extends BasePage {
   static get reviews() {
     return cy.get(".mat-expansion-panel-body");
   }
+
+  static get itemsPerPage() {
+    return cy.get("#mat-select-value-1");
+  }
+
+  static get itemsPerPageOptions() {
+    return cy.get("[id^='mat-option-']");
+  }
 }
 
 export default HomePage;

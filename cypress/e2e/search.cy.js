@@ -78,7 +78,7 @@ context("Search", () => {
   // Click Submit
   // Click expand reviews button/icon (wait for reviews to appear)
   // Validate review -  "Tastes like metal"
-  it.only("User can create a review", () => {
+  it("User can create a review", () => {
     HomePage.searchButton.click().focused();
     HomePage.searchField
       .should("be.visible")
@@ -97,5 +97,21 @@ context("Search", () => {
     HomePage.reviews
       .should("contain", loginFixture.user.email)
       .and("contain", searchFixture["raspberry"].review);
+  });
+
+  // Validate that the default amount of cards is 12
+  // Change items per page (at the bottom of page) to 24
+  // Validate that the amount of cards is 24
+  // Change items per page (at the bottom of page) to 36
+  // Validate that the amount of cards is 35
+  it.only("Default amount of products", () => {
+    [12, 24, 36].forEach((el, idx, arr) => {
+      HomePage.products.should("have.length.at.most", el);
+      HomePage.itemsPerPage.should("contain", el).click();
+      HomePage.itemsPerPageOptions
+        .should("be.visible")
+        .contains(arr[idx + 1] ?? el)
+        .click();
+    });
   });
 });
