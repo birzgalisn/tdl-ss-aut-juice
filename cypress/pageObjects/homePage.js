@@ -36,6 +36,18 @@ class HomePage extends BasePage {
   static get outsideProductDialog() {
     return cy.get(".cdk-overlay-backdrop");
   }
+
+  static get reviewField() {
+    return cy.get("textarea");
+  }
+
+  static get reviewButton() {
+    return cy.get("#mat-expansion-panel-header-0");
+  }
+
+  static get reviews() {
+    return cy.get(".mat-expansion-panel-body");
+  }
 }
 
 export default HomePage;

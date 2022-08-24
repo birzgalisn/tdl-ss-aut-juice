@@ -22,5 +22,13 @@
         "description": "Sweet & tasty!"
       }
     }
+  },
+  "raspberry": {
+    "query": "Raspberry",
+    "result": {
+      "title": "Raspberry Juice (1000ml)",
+      "description": "Made from blended Raspberry Pi, water and sugar."
+    },
+    "review": "Tastes like metal"
   }
 }

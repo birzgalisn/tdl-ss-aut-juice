@@ -37,10 +37,12 @@ context("Search", () => {
       .should("be.visible")
       .type(searchFixture["500ml"].query + "{enter}");
     HomePage.products.should("not.have.length", 1);
-    HomePage.products.contains(searchFixture["500ml"].result.title).click();
+    HomePage.products
+      .contains(searchFixture["500ml"].result["lemon"].title)
+      .click();
     HomePage.productDialog
       .should("be.visible")
-      .contains(searchFixture["500ml"].result.description);
+      .contains(searchFixture["500ml"].result["lemon"].description);
   });
 
   // Click on search icon
@@ -67,5 +69,33 @@ context("Search", () => {
         // HomePage.outsideProductDialog.click({ force: true });
       }
     );
+  });
+
+  // Click on search icon
+  // Search for Raspberry
+  // Select a product card - Raspberry Juice (1000ml)
+  // Type in review - "Tastes like metal"
+  // Click Submit
+  // Click expand reviews button/icon (wait for reviews to appear)
+  // Validate review -  "Tastes like metal"
+  it.only("User can create a review", () => {
+    HomePage.searchButton.click().focused();
+    HomePage.searchField
+      .should("be.visible")
+      .type(searchFixture["raspberry"].query + "{enter}");
+    HomePage.products.should("have.length", 1);
+    HomePage.products.contains(searchFixture["raspberry"].result.title).click();
+    HomePage.productDialog
+      .should("be.visible")
+      .contains(searchFixture["raspberry"].result.description);
+    HomePage.reviewField.type(searchFixture["raspberry"].review);
+    // HomePage.reviewField.then(($field) => {
+    //   cy.wrap($field).type(searchFixture["raspberry"].review);
+    // });
+    HomePage.submitButton.click();
+    HomePage.reviewButton.click();
+    HomePage.reviews
+      .should("contain", loginFixture.user.email)
+      .and("contain", searchFixture["raspberry"].review);
   });
 });
