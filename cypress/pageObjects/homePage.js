@@ -28,6 +28,14 @@ class HomePage extends BasePage {
   static get productDialog() {
     return cy.get("[id^='mat-dialog-']");
   }
+
+  static get productDialogCloseButton() {
+    return cy.get(".close-dialog");
+  }
+
+  static get outsideProductDialog() {
+    return cy.get(".cdk-overlay-backdrop");
+  }
 }
 
 export default HomePage;

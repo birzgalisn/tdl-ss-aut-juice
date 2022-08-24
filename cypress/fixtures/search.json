@@ -9,8 +9,18 @@
   "500ml": {
     "query": "500ml",
     "result": {
-      "title": "Lemon Juice (500ml)",
-      "description": "Sour but full of vitamins."
+      "eggfruit": {
+        "title": "Eggfruit Juice (500ml)",
+        "description": "Now with even more exotic flavour."
+      },
+      "lemon": {
+        "title": "Lemon Juice (500ml)",
+        "description": "Sour but full of vitamins."
+      },
+      "strawberry": {
+        "title": "Strawberry Juice (500ml)",
+        "description": "Sweet & tasty!"
+      }
     }
   }
 }
