@@ -1,0 +1,15 @@
+{
+  "user": {
+    "email": "Niks",
+    "password": "Password",
+    "repeatPassword": "Password",
+    "question": "Name of your favorite pet?",
+    "answer": "Pet"
+  },
+  "modal": {
+    "title": "User Registration"
+  },
+  "snackBar": {
+    "message": "Registration completed successfully. You can now log in."
+  }
+}
