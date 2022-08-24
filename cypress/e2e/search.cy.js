@@ -145,10 +145,7 @@ context("Search", () => {
     HomePage.searchField
       .should("be.visible")
       .type(searchFixture["girlie"].query + "{enter}");
-    HomePage.products
-      .contains(searchFixture["girlie"].result.title)
-      .get("[aria-label='Add to Basket']")
-      .click();
+    HomePage.addToBasketButton(searchFixture["girlie"].result.title).click();
     HomePage.basketButton.click();
 
     BasketPage.continueButton.click();
@@ -166,17 +163,11 @@ context("Search", () => {
     DeliveryMethodPage.continueButton.should("be.enabled").click();
 
     PaymentOptionsPage.continueButton.should("be.disabled");
-    PaymentOptionsPage.cards
-      .contains(searchFixture["girlie"].card)
-      .get("mat-radio-button")
-      .click();
+    PaymentOptionsPage.cards(searchFixture["girlie"].card).click();
     PaymentOptionsPage.continueButton.should("be.enabled").click();
 
     OrderSummaryPage.placeOrderButton.should("be.enabled").click();
 
-    OrderCompletionPage.message.should(
-      "contain",
-      searchFixture["girlie"].message
-    );
+    OrderCompletionPage.message.contains(searchFixture["girlie"].message);
   });
 });

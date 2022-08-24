@@ -5,8 +5,8 @@ import BasePage from "./basePage";
 class PaymentOptionsPage extends BasePage {
   static path = "/payment/shop";
 
-  static get cards() {
-    return cy.get(".mat-row");
+  static cards(digits) {
+    return cy.get(".mat-row").contains(digits).get("mat-radio-button");
   }
 
   static get continueButton() {

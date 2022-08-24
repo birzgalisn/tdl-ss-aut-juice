@@ -25,6 +25,10 @@ class HomePage extends BasePage {
     return cy.get(".mat-card");
   }
 
+  static addToBasketButton(product) {
+    return this.products.contains(product).get("[aria-label='Add to Basket']");
+  }
+
   static get productDialog() {
     return cy.get("[id^='mat-dialog-']");
   }
