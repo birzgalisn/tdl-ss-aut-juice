@@ -1,1 +1,1 @@
-# TDL_SS_AUT_JUICE
+# TestDevLab Summer School web automation testing with Cypress
